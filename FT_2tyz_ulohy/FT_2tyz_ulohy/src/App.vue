@@ -3,6 +3,7 @@ import {ref, computed} from 'vue'
 const cislo = ref(1)
 const cislo2 = ref(0)
 const cislo3 = ref(0)
+const cislo4 = ref(0)
 const mojstring = ref('You are not prepared')
 
 function krat5(){
@@ -29,6 +30,18 @@ function res2(){
   cislo3.value = 0
 }
 
+function inc3(){
+  cislo4.value = cislo4.value + 1
+}
+function dec3(){
+  cislo4.value = cislo4.value - 1
+}
+function res3(){
+  cislo4.value = 0
+}
+
+
+
 const dajclass = computed(()=> {
   if (cislo.value > 5) {
     return 'red'
@@ -45,7 +58,7 @@ const Klas = computed(()=> {
   if (cislo2.value < 0){
     return 'redb'
   }
-  
+   
 })
 const Klas2 = computed(()=> {
   if (cislo3.value > 0){
@@ -59,12 +72,30 @@ const Klas2 = computed(()=> {
   }
 })
 
+
+const Klas3 = computed(()=> {
+  if (cislo4.value > 0){
+    return 'greenb'
+  }
+  if (cislo4.value < 0){
+    return 'redb'
+  }
+  if (cislo4.value == 0){
+    return 'grayb'
+  }
+})
+
+
+const Mocnina = computed(() => {
+  return cislo4.value * cislo4.value
+})
+
 </script>
 
 <template>
   <div class="container">
   <div>
-    <h1>inspo z prezentacie</h1>
+    <h1>inspo</h1>
     <p>{{ mojstring }}</p>
     <h3 :class="dajclass">{{ cislo }}</h3>
 
@@ -88,6 +119,17 @@ const Klas2 = computed(()=> {
     <button @click="inc2">Increment</button>
     <button @click="dec2">Decrement</button>
     <button @click="res2">Reset</button>
+
+  </div>
+
+  <div>
+    <h1>uloha 3</h1>
+    <h2 :class="Klas3">{{ cislo4 }}</h2>
+    <p>Druhá mocnina: {{ Mocnina}}</p>
+
+    <button @click="inc3">Increment</button>
+    <button @click="dec3">Decrement</button>
+    <button @click="res3">Reset</button>
 
   </div>
   </div>

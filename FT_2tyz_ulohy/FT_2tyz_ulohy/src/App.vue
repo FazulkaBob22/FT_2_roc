@@ -4,6 +4,7 @@ const cislo = ref(1)
 const cislo2 = ref(0)
 const cislo3 = ref(0)
 const cislo4 = ref(0)
+const cislo5 = ref(0)
 const mojstring = ref('You are not prepared')
 
 function krat5(){
@@ -90,6 +91,32 @@ const Mocnina = computed(() => {
   return cislo4.value * cislo4.value
 })
 
+const Mocnina2 = computed(() => {
+  return cislo5.value * cislo5.value
+})
+
+const Klas5 = computed(()=> {
+  if (cislo5.value > 0){
+    return 'greenb'
+  }
+  if (cislo5.value < 0){
+    return 'redb'
+  }
+  if (cislo5.value == 0){
+    return 'grayb'
+  }
+})
+
+function inc5(){
+  cislo5.value = cislo5.value + 1
+}
+function dec5(){
+  cislo5.value = cislo5.value - 1
+}
+function res5(){
+  cislo5.value = 0
+}
+
 </script>
 
 <template>
@@ -132,6 +159,16 @@ const Mocnina = computed(() => {
     <button @click="res3">Reset</button>
 
   </div>
+
+  <div>
+    <h1>uloha 4</h1>
+    <h2 :class="Klas5">{{ cislo5 }}</h2>
+    <p>Druhá mocnina: {{ Mocnina2 }}</p>
+
+    <button @click="inc5" :class="{hidden: cislo5 > 5}">Increment</button>
+    <button @click="dec5" :class="{hidden: cislo5 < -5}">Decrement</button>
+    <button @click="res5">Reset</button>
+  </div>
   </div>
 </template>
 
@@ -154,5 +191,8 @@ const Mocnina = computed(() => {
 .container {
   display: flex;
   flex-direction: column;
+}
+.hidden {
+  display: none;
 }
 </style>
